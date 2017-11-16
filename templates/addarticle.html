@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add article|Blog</title>
+  <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/common.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class=""><a href="/"><span class="glyphicon glyphicon-home"> 首页</span></a></li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                            日志
+                            <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+
+                            <li>
+                                <a href="/addart">
+                                    日志
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+
+
+                            <li>
+                                <a href="/addart">
+                                    日记
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+
+
+                            <li>
+                                <a href="/addart">
+                                    记事本
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+
+
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                            相册
+                            <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+
+                            <li>
+                                <a href="#">
+                                    照片
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+
+
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                            音乐
+                            <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+
+                            <li>
+                                <a href="#">
+                                    背景音乐
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+
+
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="#">
+                            个人档
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="#">
+                            留言板
+                        </a>
+                    </li>
+
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 article">
+
+                <form action="" method="post">
+                <div id="article-entry" class="entry-box">
+                    <div class="article-entry-header">
+                        <h3 class="article-entry-title1" style="">
+                            <span style="float: left;font-size: 16px;margin-bottom: 2px">标题：</span>
+                            <textarea style="border: 1px dashed #969696;overflow:auto;width: 586px;height: 40px;resize:none" name="title"></textarea>
+                        </h3>
+                    </div>
+                    <div class="article-entry-info">
+                        <div class="base-info">
+                            <span class="label label-default" id="show"></span>&nbsp;
+                            <span class="label label-warning">
+<a href="#" target="_blank" style="color: white">
+原创
+</a>
+</span>&nbsp;
+
+</span>&nbsp;
+                        </div>
+
+                    </div>
+                    <div class="article-entry-sum">
+                        <span style="float: left;font-size: 16px;margin-bottom: 2px">内容：</span>
+                        <textarea style="border: 1px dashed #969696;overflow:auto;width: 586px;height: 400px" name="content"></textarea>
+                    </div>
+
+                </div>
+
+                <div>
+                    <input type="submit" value="发表" style="float: right;border: none;color: #b7bdb2;background-color: #1e1f1d;width: 60px;height: 30px;margin-right: 20px">
+                </div>
+
+            </div>
+
+            </form>
+
+
+            <div class="col-md-4 blog_nav">
+                <!--<div class="entry-box">-->
+                    <!--<form action="" method="post">-->
+                        <!--<input type="text" name="search" placeholder="请输入要查询的关键字" style="height: 32px">-->
+                        <!--<input type="submit" value="查询" style="height: 32px;width: 70px;background: #222222;color: #c3c3c3;border: none">-->
+                    <!--</form>-->
+                <!--</div>-->
+
+                <div class="entry-box">
+                    <h5><strong>博客用户</strong></h5>
+                    {% for user in userlist %}
+                        <a href="#">{{user['username']}}</a>
+                        <a href="/addfriend/{{user['username']}}" style="color: #e88f85;float: right;margin-right:100px">添加好友</a>
+                        <br>
+                    {% end %}
+                </div>
+
+                <div id="欢迎光临" class="entry-box">
+                    <h5><strong>我的好友</strong></h5>
+                    {% for friend in friends %}
+                        <a href="/friend/{{friend}}">{{friend}}</a>
+                        <a href="/delfriend/{{friend}}" style="color: #e88f85;float: right;margin-right:100px">删除好友</a>
+                        <br>
+                    {% end %}
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p class="footer-content">
+        @2017-11-08
+        <a target="_blank" href="#">demo</a>
+        -我的个人博客
+
+        -<a href="#">
+        <span class="glyphicon glyphicon-wrench">后台管理</span>
+    </a>
+
+    </p>
+</div>
+<div class="btn-group-vertical floatButton">
+    <button id="goTop" class="btn btn-default" title="去顶部" type="button">
+        <span class="glyphicon glyphicon-arrow-up">▲</span>
+    </button>
+    <button id="refresh" class="btn btn-default" title="刷新" type="button">
+        <span class="glyphicon glyphicon-refresh">↺</span>
+    </button>
+    <button id="goBottom" class="btn btn-default" title="去底部" type="button">
+        <span class="glyphicon glyphicon-arrow-down">▼</span>
+    </button>
+</div>
+
+
+
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/bootstrap-hover-dropdown.min.js"></script>
+<script src="../static/js/floatButton.js"></script>
+<script>
+    var date = new Date();  //创建对象
+    var y = date.getFullYear();     //获取年份
+    var m =date.getMonth()+1;   //获取月份  返回0-11
+    var d = date.getDate(); // 获取日
+    document.getElementById("show").innerHTML=(y+"-"+m+"-"+d)
+</script>
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search|Blog</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/common.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class=""><a href="/"><span class="glyphicon glyphicon-home"> 首页</span></a></li>
+
+
+                    <li class="dropdown">
+                        <a href="/addart" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                            日志
+                            <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+
+                            <li>
+                                <a href="/addart">
+                                    日志
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+
+
+                            <li>
+                                <a href="/addart">
+                                    日记
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+
+
+                            <li>
+                                <a href="/addart">
+                                    记事本
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+
+
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                            相册
+                            <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+
+                            <li>
+                                <a href="#">
+                                    照片
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+
+
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                            音乐
+                            <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+
+                            <li>
+                                <a href="#">
+                                    背景音乐
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+
+
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="#">
+                            个人档
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="#">
+                            留言板
+                        </a>
+                    </li>
+
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 article">
+                {% for article in articlelist%}
+                <div id="article-entry" class="entry-box">
+                    <div class="article-entry-header">
+                        <h3 class="article-entry-title">
+                            <a href="/article/{{article['date']}}">{{article['title']}}</a>
+                        </h3>
+                    </div>
+                    <div class="article-entry-info">
+                        <div class="base-info">
+                            <span class="label label-default"> {{article['date']}} </span>&nbsp;
+                            <span class="label label-warning">
+<a href="#" target="_blank" style="color: white">
+原创
+</a>
+</span>&nbsp;
+                            <!--<span class="label label-info">-->
+<!--<a href="/type/8/articles" target="_blank" style="color: white">-->
+<!--架构经验-->
+<!--</a>-->
+</span>&nbsp;
+                        </div>
+                        <!--<div class="main-info">-->
+                            <!--<span class="label label-primary">浏览 241</span>-->
+                            <!--<span class="label label-success">评论 0</span>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="article-entry-sum">
+                        <p style=" height:62px;overflow: hidden;text-overflow: ellipsis" id="content">
+                            {{article['content']}} </p>
+                    </div>
+                </div>
+                {% end %}
+
+                <div class="pagination">
+                    <ul class="pagination">
+                        <li class="disabled">
+                            <a href="#">
+                                &laquo;
+                            </a>
+                        </li>
+
+
+                        <li class="active">
+                            <a href="#">1</a>
+                        </li>
+
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+
+
+                        <li>
+                            <a href="#">
+                                &raquo;
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-4 blog_nav">
+                <div class="entry-box">
+                    <form action="" method="post">
+                        <input type="text" name="search" placeholder="请输入要查询的关键字" style="height: 32px">
+                        <input type="submit" value="查询" style="height: 32px;width: 70px;background: #222222;color: #c3c3c3;border: none">
+                    </form>
+                </div>
+
+                <div class="entry-box">
+                    <h5><strong>博客用户</strong></h5>
+                    {% for user in userlist %}
+                        <a href="/friend/{{friend}}">{{user['username']}}</a>
+                        <a href="/addfriend/{{user['username']}}" style="color: #e88f85;float: right;margin-right:100px">添加好友</a>
+                        <br>
+                    {% end %}
+
+                    <!--<p>-->
+                        <!--今日PV：<span class="badge">125</span>-->
+                        <!--今日UV：<span class="badge">58</span>-->
+                    <!--</p>-->
+                    <!--<p>-->
+                        <!--博文总数：<span class="badge">15</span>-->
+                        <!--评论总数：<span class="badge">41</span>-->
+                    <!--</p>-->
+                    <!--<p>-->
+
+                        <!--&lt;!&ndash;<a href="/source/1/articles">原创</a>：&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="badge">13</span>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<a href="/source/3/articles">翻译</a>：&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="badge">0</span>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<a href="/source/2/articles">转载</a>：&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="badge">2</span>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                </div>
+
+
+                <div id="欢迎光临" class="entry-box">
+                    <h5><strong>我的好友</strong></h5>
+                    {% for friend in friends %}
+                        <a href="#">{{friend}}</a>
+                        <a href="/delfriend/{{friend}}" style="color: #e88f85;float: right;margin-right:100px">删除好友</a>
+                        <br>
+                    {% end %}
+                </div>
+
+
+                <!--&lt;!&ndash;<div id="启动https啦" class="entry-box">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<h5><strong>启动https啦</strong></h5>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p>紧跟时尚潮流，启用https啦</p>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p>用的是<a title="Let's Encrypt" href="https://certbot.eff.org/" target="_blank">Let's Encrypt</a>&nbsp;的免费证书&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p>使用参考:&nbsp;<a title="免费HTTPS证书-Let's Encrypt" href="../../../../article/12" target="_blank">免费HTTPS证书-Let's&ndash;&gt;-->
+                        <!--&lt;!&ndash;Encrypt</a></p>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+                <!--&lt;!&ndash;<div id="换新域名啦" class="entry-box">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<h5><strong>换新域名啦</strong></h5>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p>以后就改用<a href="../../../../" target="_blank">blog.52xtg.com</a>这个域名啦，更好记一点，以前的xiaotaogou.site目前还能使用，到期后就不用啦。&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+                <!--&lt;!&ndash;<div id="尝试blog_xtg个人博客" class="entry-box">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<h5><strong>尝试blog_xtg个人博客</strong></h5>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p>这个blog系统是博主自己写的，基于异步IO框架tornado的分布式架构，欢迎小伙伴试用尝试。</p>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p>项目地址:<a href="https://github.com/xtg20121013/blog_xtg" target="_blank">https://github.com/xtg20121013/blog_xtg</a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p>架构介绍:<a href="http://blog.52xtg.com/article/11"&ndash;&gt;-->
+                               <!--&lt;!&ndash;target="_blank">http://blog.52xtg.com/article/11</a></p>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p>试用地址:<a href="http://blogdemo.52xtg.com" target="_blank">http://blogdemo.52xtg.com</a></p>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p class="footer-content">
+        @2017-11-08
+        <a target="_blank" href="#">demo</a>
+        -我的个人博客
+
+        -<a href="#">
+        <span class="glyphicon glyphicon-wrench">后台管理</span>
+    </a>
+
+    </p>
+</div>
+<div class="btn-group-vertical floatButton">
+    <button id="goTop" class="btn btn-default" title="去顶部" type="button">
+        <span class="glyphicon glyphicon-arrow-up">▲</span>
+    </button>
+    <button id="refresh" class="btn btn-default" title="刷新" type="button">
+        <span class="glyphicon glyphicon-refresh">↺</span>
+    </button>
+    <button id="goBottom" class="btn btn-default" title="去底部" type="button">
+        <span class="glyphicon glyphicon-arrow-down">▼</span>
+    </button>
+</div>
+
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/bootstrap-hover-dropdown.min.js"></script>
+<script src="../static/js/floatButton.js"></script>
+
+
+</body>
+</html>
